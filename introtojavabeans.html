@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Java Beans</title>
+</head>
+<body>
+		<h1>Introduction to JavaBeans and Bean Builder</h1>
+		<p>
+			A JavaBean is a reusable software component. It encapsulates many objects into one object so that we can access this object from multiple places. Moreover, it provides easy maintenance.<br>
+			A JavaBean is a specially constructed Java class written in java with a specific set of rules.<br>
+			1)	It should implement the serializable interface (this allows java applications and frameworks to save, store and restore the JavaBean state).<br>
+			2)	It must have a public, no argument constructor (i.e. a default constructor).<br>
+			3)	All properties in java bean must be private with public getters and setter methods (i.e. The JavaBean class attributes must be accessed via accessor and mutator methods that follow a standard naming convention).<br>
+			<h3>Syntax for Setter Methods:</h3>
+			1.	It should be public in nature.<br>
+			2.	The return-type should be void.<br>
+			3.	The setter method should be prefixed with set.<br>
+			4.	It should take some argument i.e. it should not be no-argument method.<br>
+<pre><h4>Example:</h4> 
+	public void setFirstName (String firstName) {         
+		this. firstName = firstName;
+	}</pre>
+			<h3>Syntax for Getter Methods:</h3><br>
+			1.	It should be public in nature.<br>
+			2.	The return-type should not be void i.e. according to our requirement we have to give return-type.<br>
+			3.	The getter method should be prefixed with get.<br>
+			4.	It should not take any argument.<br>
+<pre><h4>Example:</h4><br>
+	public String getFirstName () {
+		return firstName;
+	}</pre>
+			<h3>Syntax for Boolean Methods:</h3><br>
+			1.	It should be public in nature.<br>
+			2.	The return-type should be boolean.<br> 
+			3.	The boolean method should be prefixed with is.<br>
+			4.	It should not take any argument.<br>
+<pre><h4>Example:</h4>
+	public String isEmpty () {
+		return empty;
+    }</pre>
+
+<pre>
+<h2>//A JavaBean Class Example</h2>
+import java.io.Serializable;
+
+public class StudentBean implements Serializable {      // implements interface Serializable
+    private String firstName;                           // all attributes of class are private
+    private String lastName;                                                                                                           
+    private double grade;                                                     
+                                                                                                  
+    public StudentBean() {                              // no argument constructor
+    
+    }
+    public String getFirstName() {			// setters and getters for private attributes
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public double getGrade() {
+        return grade;
+    }
+    public void setGrade(double grade) {
+        this.grade = grade;
+    }
+}
+<h3>// Java Program to Access JavaBean Class</h3>
+public class Test {
+    public static void main(String[] args) {
+        StudentBean sb = new SudentBean();
+        sb.setFirstName(“Geetha”);
+        sb.setLastName(“Charan”);
+        System.out.println(“Student Name: ”+sb.getFirstName()+” ”+sb.getLastName());
+    }
+}
+
+
+Output :- Student Name: Geetha Charan
+
+</pre>
+<h2>JavaBean Properties</h2>
+	A JavaBean property is a named feature that can be accessed by the user of the object. The feature can be of any Java data type, containing the classes that you define.<br>
+	A JavaBean property may be read, write, read-only, or write-only. JavaBean features are accessed through two methods in the JavaBean's implementation class:<br>
+	<h4>1. getPropertyName ()</h4>
+		For example, if the property name is firstName, the method name would be getFirstName() to read that property. This method is called the accessor.<br>
+	<h4>2. setPropertyName ()</h4>
+		For example, if the property name is firstName, the method name would be setFirstName() to write that property. This method is called the mutator.<br>
+
+		A read-only attribute will have only a getPropertyName() method, and a write-only attribute will have only a setPropertyName() method.<br>
+
+<h2>Accessing JavaBeans</h2>
+	The useBean action declares a JavaBean for use in a JSP. Once declared, the bean becomes a scripting variable that can be accessed by both scripting elements and other custom tags used in the JSP.<br>
+	<xmp>
+		Syntax:   <jsp:useBean id = "bean's name" scope = "bean's scope" typeSpec/>
+	</xmp>
+	Here values for the scope attribute can be a page, request, session or application based on your requirement. The value of the id attribute may be any value as a long as it is a unique name among other useBean declarations in the same JSP.<br>
+	<xmp>
+	Example:	<html>
+			<head>
+				<title>useBean Example</title>
+			</head>
+			<body>
+				<jsp:useBean id = “date” class = “java.util.Date” />
+				<p>The date/time is <%= date %>
+			</body>
+			</html> 
+	</xmp>
+<h2>Accessing JavaBeans Properties</h2>
+	<xmp>
+	Along with <jsp:useBean...> action, you can use the <jsp:getProperty/> action to access the get methods and the <jsp:setProperty/> action to access the set methods.
+	</xmp>
+	<xmp>
+	Syntax: <jsp:useBean id = “id” class = "bean's class" scope = "bean's scope"> 
+	            <jsp:setProperty name = “beans’s id” property = "property name"  value=”value”/> 
+		     	<jsp:getProperty name = “beans’s id” property = "property name" /> 
+		    	……........
+	        </jsp:useBean>
+	</xmp>                
+	The name attribute references the id of a JavaBean previously introduced to the JSP by the useBean action. The property attribute is the name of the get or the set methods that should be invoked.
+<h4>Example :</h4>
+<xmp>
+<html>		
+<head>
+	<title>getters and setters example</title>
+</head>
+<body>
+	<jsp:useBean id = “students” class = “com.packagename.StudentsName”>
+	<jsp:setProperty name = “students” property = “firstName” value = “Geetha”/>
+	<jsp:setProperty name = “students” property = “lastName” value = “Charan”/>
+	<jsp:setProperty name = “students” property = “grade” value = “8”/>
+	<p>Student First Name:
+		<jsp:getProperty name = “students” property = “firstName”/>
+    	</p>
+	<p>Student Last Name:
+		<jsp:getProperty name = “students” property = “lastName”/>
+    	</p>
+	<p>Student Grade:
+		<jsp:getProperty name = “students” property = “grade”/>
+    	</p>
+</body>
+</html>	
+
+Output: 
+Student First Name: Geetha
+Student Last Name: Charan
+Student Grade: 8
+</xmp>
+		</p>
+</body>
+</html>
