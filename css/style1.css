@@ -1,0 +1,15 @@
+h2{
+	color: purple;
+}
+
+.greencolor{
+	color: green;
+	text-align: center;
+	font-family: courier;
+	font-size: 31pt;
+}
+
+#bluecolor{
+	color: blue;
+	text-align: center;
+}
