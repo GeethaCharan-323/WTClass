@@ -1,0 +1,37 @@
+.navbar{
+	height: 35pt ;
+	float: right; 
+	font-family: sans-serif;
+	font-size: 10pt;
+}
+.paddingnavbar{
+	padding: 10pt;
+}
+.imageframe{
+	height: 225pt;
+	margin-right: auto;
+	margin-left: auto;
+}
+.searchframe{
+	height: 10pt;
+	margin-right: auto;
+	margin-left: auto;
+}
+.button {
+  background-color: #4285F4;
+  border: none;
+  color: white;
+  padding: 10pt;
+  display: inline-block;
+  font-size: 10pt;
+}
+.button2{
+	background-color: #808080;
+	font-family: sans-serif;
+  border: none;
+  color: white;
+  padding: 10pt;
+  display: inline-block;
+  font-size: 12pt;
+  text-align: center;
+}
